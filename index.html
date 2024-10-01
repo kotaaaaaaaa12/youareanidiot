@@ -11,19 +11,30 @@
             height: 100%;
             overflow: hidden;
             display: flex;
-            justify-content: center; /* 横方向の中央揃え */
-            align-items: center; /* 縦方向の中央揃え */
+            justify-content: center;
+            align-items: center;
         }
         video {
-            width: 100%; /* 幅を100%に設定 */
-            max-width: 600px; /* 最大幅を設定（必要に応じて調整） */
-            height: auto; /* 高さは自動 */
-            margin: 0 0 20px 0; /* 上下にスペースを作る（調整可） */
+            width: 100%;
+            height: auto;
+            max-width: 100%;
+        }
+        
+        @media (max-width: 600px) {
+            video {
+                max-width: 100%;
+            }
+        }
+
+        @media (min-width: 601px) {
+            video {
+                max-width: 600px;
+            }
         }
     </style>
 </head>
 <body>
-    <video id="myVideo" autoplay muted loop>
+    <video id="myVideo" autoplay loop>
         <source src="./video.mp4" type="video/mp4">
         あなたのブラウザは動画タグをサポートしていません。
     </video>
@@ -31,13 +42,14 @@
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             const video = document.getElementById("myVideo");
+            video.volume = 1.0;
             if (video.requestFullscreen) {
                 video.requestFullscreen();
-            } else if (video.mozRequestFullScreen) { // Firefox
+            } else if (video.mozRequestFullScreen) {
                 video.mozRequestFullScreen();
-            } else if (video.webkitRequestFullscreen) { // Chrome, Safari and Opera
+            } else if (video.webkitRequestFullscreen) {
                 video.webkitRequestFullscreen();
-            } else if (video.msRequestFullscreen) { // IE/Edge
+            } else if (video.msRequestFullscreen) {
                 video.msRequestFullscreen();
             }
         });
