@@ -1,1 +1,1 @@
-# freebrawlstarscoin
+# youareanidiot
